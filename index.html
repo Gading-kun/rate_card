@@ -68,6 +68,20 @@
     .exporting .export-controls {
       display: none;
     }
+    @media print {
+      .no-print,
+      .export-controls {
+        display: none !important;
+      }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      body {
+        background: #0A0A0A !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-brand-dark text-white min-h-screen antialiased">
@@ -235,7 +249,7 @@
 
         <div class="text-center">
           <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
-          <p class="price-tag text-5xl text-white">4,5 JT</p>
+          <p class="price-tag text-5xl text-white">2,5 JT</p>
           <p class="text-gray-400 text-sm font-medium">/ tahun</p>
         </div>
       </div>
@@ -311,7 +325,7 @@
 
         <div class="text-center">
           <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
-          <p class="price-tag text-5xl text-brand-yellow">8,5 JT</p>
+          <p class="price-tag text-5xl text-brand-yellow">5 JT</p>
           <p class="text-gray-400 text-sm font-medium">/ tahun</p>
         </div>
       </div>
@@ -378,7 +392,7 @@
 
         <div class="text-center">
           <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
-          <p class="price-tag text-5xl text-white">12 JT</p>
+          <p class="price-tag text-5xl text-white">7,5 JT</p>
           <p class="text-gray-400 text-sm font-medium">/ tahun</p>
         </div>
       </div>
@@ -454,7 +468,7 @@
 
         <div class="text-center">
           <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
-          <p class="price-tag text-5xl text-brand-yellow">18 JT</p>
+          <p class="price-tag text-5xl text-brand-yellow">12 JT</p>
           <p class="text-gray-400 text-sm font-medium">/ tahun</p>
         </div>
       </div>
@@ -484,7 +498,7 @@
         </div>
         <h4 class="font-bold text-white text-sm mb-1">Payment Gateway</h4>
         <p class="text-gray-500 text-xs mb-3">Midtrans / Xendit integrasi penuh</p>
-        <div class="price-tag text-2xl text-brand-red">+2,5 JT</div>
+        <div class="price-tag text-2xl text-brand-red">+1,5 JT</div>
         <p class="text-gray-500 text-xs mt-0.5">one-time</p>
       </div>
 
@@ -495,7 +509,7 @@
         </div>
         <h4 class="font-bold text-white text-sm mb-1">Multi Bahasa</h4>
         <p class="text-gray-500 text-xs mb-3">ID + EN (tambah bahasa = add-on)</p>
-        <div class="price-tag text-2xl text-brand-yellow">+2 JT</div>
+        <div class="price-tag text-2xl text-brand-yellow">+1 JT</div>
         <p class="text-gray-500 text-xs mt-0.5">one-time</p>
       </div>
 
@@ -506,7 +520,7 @@
         </div>
         <h4 class="font-bold text-white text-sm mb-1">Custom Fitur</h4>
         <p class="text-gray-500 text-xs mb-3">Booking, membership, kalkulator, dll</p>
-        <div class="price-tag text-2xl text-blue-400">Mulai 3 JT</div>
+        <div class="price-tag text-2xl text-blue-400">Mulai 1,5 JT</div>
         <p class="text-gray-500 text-xs mt-0.5">per fitur</p>
       </div>
 
@@ -517,7 +531,7 @@
         </div>
         <h4 class="font-bold text-white text-sm mb-1">Extra Update</h4>
         <p class="text-gray-500 text-xs mb-3">Di luar kuota bulanan paket</p>
-        <div class="price-tag text-2xl text-purple-400">300 RB</div>
+        <div class="price-tag text-2xl text-purple-400">150 RB</div>
         <p class="text-gray-500 text-xs mt-0.5">per request</p>
       </div>
 
@@ -528,7 +542,7 @@
         </div>
         <h4 class="font-bold text-white text-sm mb-1">Dedicated Support</h4>
         <p class="text-gray-500 text-xs mb-3">Line WA khusus, respon &lt;2 jam</p>
-        <div class="price-tag text-2xl text-brand-yellow">+1,5 JT</div>
+        <div class="price-tag text-2xl text-brand-yellow">+800 RB</div>
         <p class="text-gray-500 text-xs mt-0.5">per bulan</p>
       </div>
 
@@ -633,8 +647,10 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNa5QYvlL7M8dkUB5mOyqK8BPVKxH/efxWWEXUOYaL6VBBtgD5nq2WEYLRh3SeDsICoZ6irMIXja+6JGZveHFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvr8s0qmT+0eG0ugHgdGXN53BJ38qRAjPR9U1FVLtZL1NVr7DiIP9N6byN1Nsx3Rp3XIan+FJxuxMxDPZWS9A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Export libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+
   <script>
     (function () {
       'use strict';
@@ -655,88 +671,177 @@
         statusLabel.textContent = message || '';
       }
 
-      function downloadFile(dataUrl, fileName) {
+      function downloadBlob(blob, fileName) {
+        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.href = dataUrl;
+        link.href = url;
         link.download = fileName;
         document.body.appendChild(link);
         link.click();
         link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
       }
 
-      async function createRateCardCanvas() {
-        if (!window.html2canvas) {
-          throw new Error('Library html2canvas tidak tersedia.');
-        }
-
-        document.body.classList.add('exporting');
+      /**
+       * Capture the full page using html2canvas.
+       * We temporarily hide the export controls, scroll to top, and
+       * set a fixed width so the capture is consistent.
+       */
+      async function captureFullPage() {
+        // Wait for all fonts to be loaded
         await document.fonts.ready;
 
-        const canvas = await window.html2canvas(document.body, {
+        // Hide export controls during capture
+        const controls = document.querySelector('.export-controls');
+        if (controls) controls.style.display = 'none';
+
+        // Scroll to top to avoid offset issues
+        window.scrollTo(0, 0);
+
+        // Small delay to let the browser settle after scroll
+        await new Promise(function (r) { setTimeout(r, 300); });
+
+        const captureTarget = document.body;
+
+        const canvas = await html2canvas(captureTarget, {
           scale: 2,
           useCORS: true,
+          allowTaint: true,
           backgroundColor: '#0A0A0A',
-          windowWidth: document.documentElement.scrollWidth,
-          windowHeight: document.documentElement.scrollHeight,
+          width: captureTarget.scrollWidth,
+          height: captureTarget.scrollHeight,
+          windowWidth: captureTarget.scrollWidth,
+          windowHeight: captureTarget.scrollHeight,
           scrollX: 0,
-          scrollY: -window.scrollY,
+          scrollY: 0,
+          logging: false,
+          onclone: function (clonedDoc) {
+            // Remove export controls and scripts from the cloned DOM
+            clonedDoc.querySelectorAll('.export-controls, .no-print').forEach(function (el) {
+              el.remove();
+            });
+          }
         });
 
-        document.body.classList.remove('exporting');
+        // Restore export controls
+        if (controls) controls.style.display = '';
+
         return canvas;
       }
 
       async function exportToImage() {
-        setBusyState(true, 'Membuat image...');
+        setBusyState(true, 'Membuat image… (harap tunggu)');
         try {
-          const canvas = await createRateCardCanvas();
+          const canvas = await captureFullPage();
           const fileName = 'rate-card-' + new Date().toISOString().slice(0, 10) + '.png';
-          downloadFile(canvas.toDataURL('image/png'), fileName);
-          setBusyState(false, 'Image berhasil diunduh.');
+
+          canvas.toBlob(function (blob) {
+            if (!blob) {
+              setBusyState(false, 'Gagal membuat blob image.');
+              return;
+            }
+            downloadBlob(blob, fileName);
+            setBusyState(false, 'Image berhasil diunduh ✓');
+            setTimeout(function () { statusLabel.textContent = ''; }, 4000);
+          }, 'image/png');
         } catch (error) {
-          document.body.classList.remove('exporting');
           setBusyState(false, 'Gagal export image.');
-          console.error(error);
+          console.error('Export image error:', error);
         }
       }
 
       async function exportToPdf() {
-        setBusyState(true, 'Membuat PDF...');
+        setBusyState(true, 'Membuat PDF… (harap tunggu)');
         try {
-          if (!window.jspdf || !window.jspdf.jsPDF) {
-            throw new Error('Library jsPDF tidak tersedia.');
+          const canvas = await captureFullPage();
+
+          var _jsPDF = window.jspdf.jsPDF;
+
+          // Calculate PDF page dimensions
+          // We'll use the canvas aspect ratio and fit into A4-ish pages
+          var imgWidth = canvas.width;
+          var imgHeight = canvas.height;
+
+          // A4 in mm: 210 x 297
+          var pdfPageWidth = 210;
+          var pdfPageHeight = 297;
+          var margin = 0; // Full bleed, no margin for rate card
+
+          var contentWidth = pdfPageWidth - (margin * 2);
+          var scaleFactor = contentWidth / imgWidth;
+          var scaledHeight = imgHeight * scaleFactor;
+
+          // Create PDF in portrait A4
+          var pdf = new _jsPDF('p', 'mm', 'a4');
+          var pageContentHeight = pdfPageHeight - (margin * 2);
+
+          // If the scaled content fits in one page, just add it
+          if (scaledHeight <= pageContentHeight) {
+            pdf.addImage(
+              canvas.toDataURL('image/jpeg', 0.95),
+              'JPEG',
+              margin,
+              margin,
+              contentWidth,
+              scaledHeight
+            );
+          } else {
+            // Split into multiple pages
+            var totalPages = Math.ceil(scaledHeight / pageContentHeight);
+
+            for (var page = 0; page < totalPages; page++) {
+              if (page > 0) {
+                pdf.addPage();
+              }
+
+              // Calculate the source region from the canvas for this page
+              var sourceY = Math.round((page * pageContentHeight) / scaleFactor);
+              var sourceHeight = Math.round(pageContentHeight / scaleFactor);
+
+              // Don't exceed canvas bounds
+              if (sourceY + sourceHeight > imgHeight) {
+                sourceHeight = imgHeight - sourceY;
+              }
+
+              // Create a temporary canvas for this page slice
+              var pageCanvas = document.createElement('canvas');
+              pageCanvas.width = imgWidth;
+              pageCanvas.height = sourceHeight;
+              var ctx = pageCanvas.getContext('2d');
+
+              // Fill with background color first
+              ctx.fillStyle = '#0A0A0A';
+              ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+              // Draw the slice
+              ctx.drawImage(
+                canvas,
+                0, sourceY,           // source x, y
+                imgWidth, sourceHeight, // source width, height
+                0, 0,                   // dest x, y
+                imgWidth, sourceHeight  // dest width, height
+              );
+
+              var sliceScaledHeight = sourceHeight * scaleFactor;
+
+              pdf.addImage(
+                pageCanvas.toDataURL('image/jpeg', 0.95),
+                'JPEG',
+                margin,
+                margin,
+                contentWidth,
+                sliceScaledHeight
+              );
+            }
           }
 
-          const canvas = await createRateCardCanvas();
-          const { jsPDF } = window.jspdf;
-          const pdf = new jsPDF('p', 'mm', 'a4');
-          const imgData = canvas.toDataURL('image/jpeg', 0.95);
-
-          const pageWidth = pdf.internal.pageSize.getWidth();
-          const pageHeight = pdf.internal.pageSize.getHeight();
-          const imageWidth = pageWidth;
-          const imageHeight = (canvas.height * imageWidth) / canvas.width;
-
-          let renderedHeight = 0;
-          let positionY = 0;
-
-          pdf.addImage(imgData, 'JPEG', 0, positionY, imageWidth, imageHeight, undefined, 'FAST');
-          renderedHeight += pageHeight;
-
-          while (renderedHeight < imageHeight) {
-            positionY = renderedHeight - imageHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'JPEG', 0, positionY, imageWidth, imageHeight, undefined, 'FAST');
-            renderedHeight += pageHeight;
-          }
-
-          const fileName = 'rate-card-' + new Date().toISOString().slice(0, 10) + '.pdf';
+          var fileName = 'rate-card-' + new Date().toISOString().slice(0, 10) + '.pdf';
           pdf.save(fileName);
-          setBusyState(false, 'PDF berhasil diunduh.');
+          setBusyState(false, 'PDF berhasil diunduh ✓');
+          setTimeout(function () { statusLabel.textContent = ''; }, 4000);
         } catch (error) {
-          document.body.classList.remove('exporting');
           setBusyState(false, 'Gagal export PDF.');
-          console.error(error);
+          console.error('Export PDF error:', error);
         }
       }
 
