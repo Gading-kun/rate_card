@@ -52,9 +52,35 @@
       background: linear-gradient(90deg, transparent, #E81010, transparent);
       height: 2px;
     }
+    .export-controls {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .export-status {
+      min-height: 1.25rem;
+      text-align: center;
+    }
+    .exporting .export-controls {
+      display: none;
+    }
   </style>
 </head>
 <body class="bg-brand-dark text-white min-h-screen antialiased">
+
+  <div class="export-controls no-print">
+    <button id="exportPdfBtn" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-yellow/40 bg-brand-yellow text-black font-bold px-4 py-2.5 text-sm shadow-glow-gold hover:brightness-105 transition">
+      Export PDF
+    </button>
+    <button id="exportImageBtn" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 text-white font-bold px-4 py-2.5 text-sm hover:bg-white/20 transition">
+      Export Image
+    </button>
+    <p id="exportStatus" class="export-status text-xs text-gray-400"></p>
+  </div>
 
   <!-- ═══════════════════════════════════════════
        HERO / HEADER
@@ -584,11 +610,6 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center flex-shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253M3 12c0 .778.099 1.533.284 2.253" /></svg>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-brand-red/10 border border-brand-red/20 flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-red" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
             </div>
@@ -611,6 +632,118 @@
       </p>
     </div>
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNa5QYvlL7M8dkUB5mOyqK8BPVKxH/efxWWEXUOYaL6VBBtgD5nq2WEYLRh3SeDsICoZ6irMIXja+6JGZveHFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvr8s0qmT+0eG0ugHgdGXN53BJ38qRAjPR9U1FVLtZL1NVr7DiIP9N6byN1Nsx3Rp3XIan+FJxuxMxDPZWS9A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      const pdfButton = document.getElementById('exportPdfBtn');
+      const imageButton = document.getElementById('exportImageBtn');
+      const statusLabel = document.getElementById('exportStatus');
+
+      if (!pdfButton || !imageButton || !statusLabel) return;
+
+      function setBusyState(isBusy, message) {
+        pdfButton.disabled = isBusy;
+        imageButton.disabled = isBusy;
+        pdfButton.classList.toggle('opacity-60', isBusy);
+        imageButton.classList.toggle('opacity-60', isBusy);
+        pdfButton.classList.toggle('cursor-not-allowed', isBusy);
+        imageButton.classList.toggle('cursor-not-allowed', isBusy);
+        statusLabel.textContent = message || '';
+      }
+
+      function downloadFile(dataUrl, fileName) {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+
+      async function createRateCardCanvas() {
+        if (!window.html2canvas) {
+          throw new Error('Library html2canvas tidak tersedia.');
+        }
+
+        document.body.classList.add('exporting');
+        await document.fonts.ready;
+
+        const canvas = await window.html2canvas(document.body, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#0A0A0A',
+          windowWidth: document.documentElement.scrollWidth,
+          windowHeight: document.documentElement.scrollHeight,
+          scrollX: 0,
+          scrollY: -window.scrollY,
+        });
+
+        document.body.classList.remove('exporting');
+        return canvas;
+      }
+
+      async function exportToImage() {
+        setBusyState(true, 'Membuat image...');
+        try {
+          const canvas = await createRateCardCanvas();
+          const fileName = 'rate-card-' + new Date().toISOString().slice(0, 10) + '.png';
+          downloadFile(canvas.toDataURL('image/png'), fileName);
+          setBusyState(false, 'Image berhasil diunduh.');
+        } catch (error) {
+          document.body.classList.remove('exporting');
+          setBusyState(false, 'Gagal export image.');
+          console.error(error);
+        }
+      }
+
+      async function exportToPdf() {
+        setBusyState(true, 'Membuat PDF...');
+        try {
+          if (!window.jspdf || !window.jspdf.jsPDF) {
+            throw new Error('Library jsPDF tidak tersedia.');
+          }
+
+          const canvas = await createRateCardCanvas();
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF('p', 'mm', 'a4');
+          const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+          const pageWidth = pdf.internal.pageSize.getWidth();
+          const pageHeight = pdf.internal.pageSize.getHeight();
+          const imageWidth = pageWidth;
+          const imageHeight = (canvas.height * imageWidth) / canvas.width;
+
+          let renderedHeight = 0;
+          let positionY = 0;
+
+          pdf.addImage(imgData, 'JPEG', 0, positionY, imageWidth, imageHeight, undefined, 'FAST');
+          renderedHeight += pageHeight;
+
+          while (renderedHeight < imageHeight) {
+            positionY = renderedHeight - imageHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'JPEG', 0, positionY, imageWidth, imageHeight, undefined, 'FAST');
+            renderedHeight += pageHeight;
+          }
+
+          const fileName = 'rate-card-' + new Date().toISOString().slice(0, 10) + '.pdf';
+          pdf.save(fileName);
+          setBusyState(false, 'PDF berhasil diunduh.');
+        } catch (error) {
+          document.body.classList.remove('exporting');
+          setBusyState(false, 'Gagal export PDF.');
+          console.error(error);
+        }
+      }
+
+      pdfButton.addEventListener('click', exportToPdf);
+      imageButton.addEventListener('click', exportToImage);
+    })();
+  </script>
 
 </body>
 </html>
