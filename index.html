@@ -1,425 +1,620 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rate Card</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Web Development Pricing — BP Film Studio 2025/2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            bebas: ['Bebas Neue', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red:    '#E81010',
+              yellow: '#F5C518',
+              dark:   '#0A0A0A',
+              card:   '#111111',
+              border: '#222222',
+            },
+          },
+          boxShadow: {
+            glow:        '0 0 30px rgba(232,16,16,0.25)',
+            'glow-gold': '0 0 30px rgba(245,197,24,0.3)',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .stripe-bg {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 6px,
+        rgba(255,255,255,0.02) 6px,
+        rgba(255,255,255,0.02) 12px
+      );
+    }
+    .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+    .card-hover:hover { transform: translateY(-6px); }
+    .badge-popular {
+      background: linear-gradient(135deg, #F5C518 0%, #E88A10 100%);
+    }
+    .price-tag { font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+    .section-line {
+      background: linear-gradient(90deg, transparent, #E81010, transparent);
+      height: 2px;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-brand-dark text-white min-h-screen antialiased">
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <span class="brand-icon">✦</span>
-        <span class="brand-name">Creative Studio</span>
+  <!-- ═══════════════════════════════════════════
+       HERO / HEADER
+  ════════════════════════════════════════════ -->
+  <header class="relative overflow-hidden stripe-bg">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-red/10 via-transparent to-brand-yellow/5 pointer-events-none"></div>
+
+    <!-- Logo bar -->
+    <div class="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-6 pt-8 pb-4">
+      <div class="flex items-center gap-3">
+        <!-- Logo icon -->
+        <div class="w-10 h-10 rounded-lg bg-brand-red flex items-center justify-center font-bebas text-xl tracking-widest">BP</div>
+        <div class="leading-tight">
+          <p class="font-bebas text-lg tracking-widest text-white">BP FILM STUDIO</p>
+          <p class="text-xs text-gray-400 font-medium tracking-widest uppercase">Since 2014</p>
+        </div>
       </div>
-      <div class="header-controls">
-        <button class="btn btn-outline" id="printBtn" aria-label="Print rate card">
-          🖨 Print / Save PDF
-        </button>
-        <label class="currency-toggle" aria-label="Toggle currency">
-          <span id="currencyLabel">USD</span>
-          <div class="toggle-track" role="switch" aria-checked="false" tabindex="0" id="currencySwitch">
-            <div class="toggle-thumb"></div>
-          </div>
-          <span>IDR</span>
-        </label>
+      <div class="hidden md:flex items-center gap-6 text-sm text-gray-400">
+        <span class="flex items-center gap-1.5">
+          <!-- shield check icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.955 11.955 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.25-8.25-3.286Z" /></svg>
+          Garansi 1 Tahun
+        </span>
+        <span class="flex items-center gap-1.5">
+          <!-- bolt icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg>
+          AI-Powered Dev
+        </span>
+        <span class="flex items-center gap-1.5">
+          <!-- device phone icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18h3" /></svg>
+          Mobile Friendly
+        </span>
+      </div>
+    </div>
+
+    <!-- Hero headline -->
+    <div class="relative z-10 text-center max-w-5xl mx-auto px-6 py-10 pb-16">
+      <div class="inline-block bg-brand-red/20 border border-brand-red/40 text-brand-red text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">
+        ⚡ Special Offer — Terbatas 2025/2026
+      </div>
+
+      <h1 class="font-bebas text-6xl md:text-8xl lg:text-9xl leading-none tracking-wide mb-3">
+        PROMO<br/>
+        <span class="text-brand-red">WEB DEVELOPMENT</span>
+      </h1>
+
+      <div class="inline-block bg-gradient-to-r from-brand-yellow to-orange-400 text-black font-bebas text-3xl md:text-5xl px-6 py-2 rounded-lg mb-6 tracking-wider shadow-glow-gold">
+        SUPER VALUE PACKAGE
+      </div>
+
+      <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+        Bukan cuma website — kami bantu bisnis Anda
+        <span class="text-brand-yellow font-bold"> ONLINE, TERAWAT &amp; TERUS BERKEMBANG</span>
+      </p>
+
+      <!-- Value props row -->
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+        <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-3 py-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-yellow flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+          <span class="text-xs font-semibold text-gray-300">Strategi Tepat</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-3 py-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-yellow flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg>
+          <span class="text-xs font-semibold text-gray-300">Performa Maksimal</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-3 py-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-yellow flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.955 11.955 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.25-8.25-3.286Z" /></svg>
+          <span class="text-xs font-semibold text-gray-300">Aman &amp; Terawat</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-3 py-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-yellow flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" /></svg>
+          <span class="text-xs font-semibold text-gray-300">Support Prioritas</span>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="container">
-      <h1 class="hero-title">Our Rate Card</h1>
-      <p class="hero-sub">Transparent pricing for every project size. All packages include dedicated support.</p>
-      <p class="hero-updated">Last updated: <time datetime="2026-05-05">May 2026</time></p>
+  <div class="section-line"></div>
+
+  <!-- ═══════════════════════════════════════════
+       PRICING CARDS
+  ════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-bebas text-4xl md:text-5xl tracking-wider text-white mb-2">
+        PAKET WEBSITE
+        <span class="text-brand-yellow">(TAHUNAN)</span>
+      </h2>
+      <p class="text-gray-400 text-sm">Harga sudah termasuk hosting, domain, dan maintenance. Transparan, no hidden fee.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+
+      <!-- ── PAKET 1 · BASIC ── -->
+      <div class="relative bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col card-hover shadow-lg">
+        <div class="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-brand-red"></div>
+
+        <div class="mb-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-red bg-brand-red/10 border border-brand-red/30 px-3 py-1 rounded-full">Paket 1</span>
+        </div>
+
+        <!-- Icon -->
+        <div class="w-14 h-14 rounded-2xl bg-brand-red/10 border border-brand-red/20 flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-red" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3" /></svg>
+        </div>
+
+        <h3 class="font-bebas text-2xl tracking-wide text-white mb-0.5">COMPANY PROFILE</h3>
+        <span class="font-bebas text-lg text-brand-red tracking-widest">BASIC</span>
+        <p class="text-gray-500 text-xs mt-1 mb-5">Cocok untuk bisnis baru &amp; UMKM yang mau go online</p>
+
+        <ul class="space-y-2.5 mb-6 flex-1">
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            1–5 halaman (Home, About, Service, Portfolio, Contact)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Design responsif (mobile-first)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Integrasi WhatsApp floating button
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Form kontak (nama, email, pesan)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            On-page SEO dasar (meta, sitemap)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Hosting + domain .com (1 tahun)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Update konten minor 1x/bulan
+          </li>
+          <!-- Limitation -->
+          <li class="flex items-start gap-2 text-sm text-gray-500 pt-1 border-t border-brand-border">
+            <svg class="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"/></svg>
+            Maks. 5 halaman, tanpa admin panel
+          </li>
+        </ul>
+
+        <div class="bg-brand-red/10 border border-brand-red/20 rounded-xl p-3 mb-5 text-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Garansi Support</p>
+          <p class="text-brand-red font-bold text-sm">1 TAHUN</p>
+        </div>
+
+        <div class="text-center">
+          <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
+          <p class="price-tag text-5xl text-white">4,5 JT</p>
+          <p class="text-gray-400 text-sm font-medium">/ tahun</p>
+        </div>
+      </div>
+
+      <!-- ── PAKET 2 · PRO (MOST POPULAR) ── -->
+      <div class="relative bg-brand-card border-2 border-orange-400 rounded-2xl p-6 flex flex-col card-hover shadow-glow-gold">
+        <div class="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r from-brand-yellow to-orange-400"></div>
+
+        <!-- Most popular badge -->
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span class="badge-popular text-black text-xs font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">⭐ Most Popular</span>
+        </div>
+
+        <div class="mb-4 mt-3">
+          <span class="text-xs font-bold uppercase tracking-widest text-orange-400 bg-orange-400/10 border border-orange-400/30 px-3 py-1 rounded-full">Paket 2</span>
+        </div>
+
+        <div class="w-14 h-14 rounded-2xl bg-orange-400/10 border border-orange-400/20 flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-orange-400" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" /></svg>
+        </div>
+
+        <h3 class="font-bebas text-2xl tracking-wide text-white mb-0.5">COMPANY PROFILE</h3>
+        <span class="font-bebas text-lg text-orange-400 tracking-widest">PRO</span>
+        <p class="text-gray-500 text-xs mt-1 mb-5">CV, PT, atau brand yang mau tampil profesional &amp; dipercaya</p>
+
+        <ul class="space-y-2.5 mb-6 flex-1">
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            5–10 halaman website custom
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Custom design profesional (bukan template)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            WhatsApp + CTA conversion-focused
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Admin panel (edit konten sendiri)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            SEO on-page + speed optimization
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Google Analytics + Search Console
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Hosting + domain .com (1 tahun)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Maintenance + backup bulanan
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Update konten 2x/bulan
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-500 pt-1 border-t border-brand-border">
+            <svg class="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"/></svg>
+            Maks. 10 halaman, tanpa e-commerce
+          </li>
+        </ul>
+
+        <div class="bg-orange-400/10 border border-orange-400/20 rounded-xl p-3 mb-5 text-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Garansi Support</p>
+          <p class="text-orange-400 font-bold text-sm">1 TAHUN</p>
+        </div>
+
+        <div class="text-center">
+          <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
+          <p class="price-tag text-5xl text-brand-yellow">8,5 JT</p>
+          <p class="text-gray-400 text-sm font-medium">/ tahun</p>
+        </div>
+      </div>
+
+      <!-- ── PAKET 3 · ONLINE SHOP (WA) ── -->
+      <div class="relative bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col card-hover shadow-lg">
+        <div class="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-green-500"></div>
+
+        <div class="mb-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-green-400 bg-green-400/10 border border-green-400/30 px-3 py-1 rounded-full">Paket 3</span>
+        </div>
+
+        <div class="w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" /></svg>
+        </div>
+
+        <h3 class="font-bebas text-2xl tracking-wide text-white mb-0.5">ONLINE SHOP</h3>
+        <span class="font-bebas text-lg text-green-400 tracking-widest">(ORDER VIA WA)</span>
+        <p class="text-gray-500 text-xs mt-1 mb-5">Jualan online tanpa ribet — cocok untuk reseller, UMKM produk</p>
+
+        <ul class="space-y-2.5 mb-6 flex-1">
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Katalog produk hingga 50 item
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Keranjang → redirect langsung ke WhatsApp
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Kategori &amp; filter produk
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Admin panel — kelola produk mandiri
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            SEO basic (product schema)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Hosting + domain .com
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Maintenance + backup rutin
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Update produk 2x/bulan
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-500 pt-1 border-t border-brand-border">
+            <svg class="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"/></svg>
+            Maks. 50 produk, tanpa payment gateway
+          </li>
+        </ul>
+
+        <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-3 mb-5 text-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Garansi Support</p>
+          <p class="text-green-400 font-bold text-sm">1 TAHUN</p>
+        </div>
+
+        <div class="text-center">
+          <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
+          <p class="price-tag text-5xl text-white">12 JT</p>
+          <p class="text-gray-400 text-sm font-medium">/ tahun</p>
+        </div>
+      </div>
+
+      <!-- ── PAKET 4 · ONLINE SHOP PRO ── -->
+      <div class="relative bg-brand-card border border-brand-yellow/40 rounded-2xl p-6 flex flex-col card-hover shadow-glow-gold">
+        <div class="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-brand-yellow"></div>
+
+        <div class="mb-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-yellow/10 border border-brand-yellow/30 px-3 py-1 rounded-full">Paket 4</span>
+        </div>
+
+        <div class="w-14 h-14 rounded-2xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" /></svg>
+        </div>
+
+        <div class="flex items-start justify-between gap-2 mb-0.5">
+          <h3 class="font-bebas text-2xl tracking-wide text-white">ONLINE SHOP</h3>
+          <div class="w-6 h-6 rounded-full bg-brand-yellow/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-3.5 h-3.5 text-brand-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+        <span class="font-bebas text-lg text-brand-yellow tracking-widest">PRO</span>
+        <p class="text-gray-500 text-xs mt-1 mb-5">Untuk brand yang serius scale — e-commerce penuh dengan payment</p>
+
+        <ul class="space-y-2.5 mb-6 flex-1">
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Produk <span class="text-brand-yellow font-semibold">unlimited</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Full checkout system (cart → order)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Integrasi payment (Midtrans/Xendit, opsional)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Dashboard admin lengkap (order, stok, user)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            SEO advanced + structured data
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Performance optimization (Core Web Vitals)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Hosting premium + domain .com
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Maintenance full + uptime monitoring
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-brand-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
+            Update produk &amp; konten 4x/bulan
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-500 pt-1 border-t border-brand-border">
+            <svg class="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"/></svg>
+            Revisi desain maks. 3 ronde
+          </li>
+        </ul>
+
+        <div class="bg-brand-yellow/10 border border-brand-yellow/20 rounded-xl p-3 mb-5 text-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Garansi Support</p>
+          <p class="text-brand-yellow font-bold text-sm">PRIORITAS — 1 TAHUN</p>
+        </div>
+
+        <div class="text-center">
+          <p class="text-gray-500 text-xs mb-1 tracking-widest uppercase">Mulai dari</p>
+          <p class="price-tag text-5xl text-brand-yellow">18 JT</p>
+          <p class="text-gray-400 text-sm font-medium">/ tahun</p>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </section>
+
+  <div class="section-line max-w-7xl mx-auto"></div>
+
+  <!-- ═══════════════════════════════════════════
+       ADD-ONS
+  ════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-4 py-14">
+    <div class="text-center mb-10">
+      <h2 class="font-bebas text-4xl md:text-5xl tracking-wider text-white mb-2">
+        ADD-ON <span class="text-brand-red">SERVICES</span>
+      </h2>
+      <p class="text-gray-400 text-sm">Tambahkan sesuai kebutuhan bisnis Anda</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+
+      <!-- Payment Gateway -->
+      <div class="bg-brand-card border border-brand-border rounded-xl p-5 text-center hover:border-brand-red/50 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/20 flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-red" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
+        </div>
+        <h4 class="font-bold text-white text-sm mb-1">Payment Gateway</h4>
+        <p class="text-gray-500 text-xs mb-3">Midtrans / Xendit integrasi penuh</p>
+        <div class="price-tag text-2xl text-brand-red">+2,5 JT</div>
+        <p class="text-gray-500 text-xs mt-0.5">one-time</p>
+      </div>
+
+      <!-- Multi Bahasa -->
+      <div class="bg-brand-card border border-brand-border rounded-xl p-5 text-center hover:border-brand-yellow/50 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" /></svg>
+        </div>
+        <h4 class="font-bold text-white text-sm mb-1">Multi Bahasa</h4>
+        <p class="text-gray-500 text-xs mb-3">ID + EN (tambah bahasa = add-on)</p>
+        <div class="price-tag text-2xl text-brand-yellow">+2 JT</div>
+        <p class="text-gray-500 text-xs mt-0.5">one-time</p>
+      </div>
+
+      <!-- Custom Fitur -->
+      <div class="bg-brand-card border border-brand-border rounded-xl p-5 text-center hover:border-blue-500/50 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+        </div>
+        <h4 class="font-bold text-white text-sm mb-1">Custom Fitur</h4>
+        <p class="text-gray-500 text-xs mb-3">Booking, membership, kalkulator, dll</p>
+        <div class="price-tag text-2xl text-blue-400">Mulai 3 JT</div>
+        <p class="text-gray-500 text-xs mt-0.5">per fitur</p>
+      </div>
+
+      <!-- Extra Update -->
+      <div class="bg-brand-card border border-brand-border rounded-xl p-5 text-center hover:border-purple-500/50 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+        </div>
+        <h4 class="font-bold text-white text-sm mb-1">Extra Update</h4>
+        <p class="text-gray-500 text-xs mb-3">Di luar kuota bulanan paket</p>
+        <div class="price-tag text-2xl text-purple-400">300 RB</div>
+        <p class="text-gray-500 text-xs mt-0.5">per request</p>
+      </div>
+
+      <!-- Dedicated Support -->
+      <div class="bg-brand-card border border-brand-border rounded-xl p-5 text-center hover:border-brand-yellow/50 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" /></svg>
+        </div>
+        <h4 class="font-bold text-white text-sm mb-1">Dedicated Support</h4>
+        <p class="text-gray-500 text-xs mb-3">Line WA khusus, respon &lt;2 jam</p>
+        <div class="price-tag text-2xl text-brand-yellow">+1,5 JT</div>
+        <p class="text-gray-500 text-xs mt-0.5">per bulan</p>
+      </div>
+
     </div>
   </section>
 
-  <!-- ===== SERVICES ===== -->
-  <main class="container main-content">
+  <div class="section-line max-w-7xl mx-auto"></div>
 
-    <!-- ─── Section: Graphic Design ─── -->
-    <section class="service-section" aria-labelledby="design-heading">
-      <h2 class="section-title" id="design-heading">
-        <span class="section-icon">🎨</span> Graphic Design
-      </h2>
-      <div class="cards-grid">
-
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">Logo Design</h3>
-            <span class="badge badge-starter">Starter</span>
-          </div>
-          <div class="card-price" data-usd="250" data-idr="4000000">
-            <span class="price-amount">$250</span>
-            <span class="price-unit">/ project</span>
-          </div>
-          <ul class="card-features">
-            <li>2 initial concepts</li>
-            <li>3 revision rounds</li>
-            <li>PNG &amp; SVG deliverables</li>
-            <li>7-day turnaround</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
-        <article class="card card-featured">
-          <div class="featured-label">Most Popular</div>
-          <div class="card-header">
-            <h3 class="card-title">Brand Identity</h3>
-            <span class="badge badge-pro">Pro</span>
-          </div>
-          <div class="card-price" data-usd="750" data-idr="12000000">
-            <span class="price-amount">$750</span>
-            <span class="price-unit">/ project</span>
-          </div>
-          <ul class="card-features">
-            <li>Logo + color palette</li>
-            <li>Typography selection</li>
-            <li>Brand guidelines PDF</li>
-            <li>5 revision rounds</li>
-            <li>14-day turnaround</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">Full Brand Suite</h3>
-            <span class="badge badge-enterprise">Enterprise</span>
-          </div>
-          <div class="card-price" data-usd="1800" data-idr="29000000">
-            <span class="price-amount">$1,800</span>
-            <span class="price-unit">/ project</span>
-          </div>
-          <ul class="card-features">
-            <li>Everything in Pro</li>
-            <li>Business card design</li>
-            <li>Letterhead &amp; envelope</li>
-            <li>Social media kit</li>
-            <li>Unlimited revisions</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
+  <!-- ═══════════════════════════════════════════
+       FEATURE PILLS ROW
+  ════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-4 py-10">
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-sm font-semibold text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>
+        Design Modern &amp; Profesional
       </div>
-    </section>
-
-    <!-- ─── Section: Web Development ─── -->
-    <section class="service-section" aria-labelledby="web-heading">
-      <h2 class="section-title" id="web-heading">
-        <span class="section-icon">💻</span> Web Development
-      </h2>
-      <div class="cards-grid">
-
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">Landing Page</h3>
-            <span class="badge badge-starter">Starter</span>
-          </div>
-          <div class="card-price" data-usd="500" data-idr="8000000">
-            <span class="price-amount">$500</span>
-            <span class="price-unit">/ project</span>
-          </div>
-          <ul class="card-features">
-            <li>1-page responsive design</li>
-            <li>Contact form integration</li>
-            <li>Basic SEO setup</li>
-            <li>10-day delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
-        <article class="card card-featured">
-          <div class="featured-label">Most Popular</div>
-          <div class="card-header">
-            <h3 class="card-title">Company Website</h3>
-            <span class="badge badge-pro">Pro</span>
-          </div>
-          <div class="card-price" data-usd="2000" data-idr="32000000">
-            <span class="price-amount">$2,000</span>
-            <span class="price-unit">/ project</span>
-          </div>
-          <ul class="card-features">
-            <li>Up to 8 pages</li>
-            <li>CMS integration</li>
-            <li>Mobile-first design</li>
-            <li>Performance optimized</li>
-            <li>30-day delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">E-Commerce Store</h3>
-            <span class="badge badge-enterprise">Enterprise</span>
-          </div>
-          <div class="card-price" data-usd="4500" data-idr="72000000">
-            <span class="price-amount">$4,500</span>
-            <span class="price-unit">/ project</span>
-          </div>
-          <ul class="card-features">
-            <li>Full product catalog</li>
-            <li>Payment gateway setup</li>
-            <li>Order management</li>
-            <li>Analytics dashboard</li>
-            <li>45-day delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
+      <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-sm font-semibold text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18h3" /></svg>
+        Mobile Friendly (WAJIB!)
       </div>
-    </section>
-
-    <!-- ─── Section: Photography ─── -->
-    <section class="service-section" aria-labelledby="photo-heading">
-      <h2 class="section-title" id="photo-heading">
-        <span class="section-icon">📷</span> Photography
-      </h2>
-      <div class="cards-grid">
-
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">Portrait Session</h3>
-            <span class="badge badge-starter">Starter</span>
-          </div>
-          <div class="card-price" data-usd="150" data-idr="2400000">
-            <span class="price-amount">$150</span>
-            <span class="price-unit">/ 1 hr</span>
-          </div>
-          <ul class="card-features">
-            <li>1-hour shoot</li>
-            <li>20 edited photos</li>
-            <li>Online gallery</li>
-            <li>5-day delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
-        <article class="card card-featured">
-          <div class="featured-label">Most Popular</div>
-          <div class="card-header">
-            <h3 class="card-title">Event Coverage</h3>
-            <span class="badge badge-pro">Pro</span>
-          </div>
-          <div class="card-price" data-usd="600" data-idr="9600000">
-            <span class="price-amount">$600</span>
-            <span class="price-unit">/ event</span>
-          </div>
-          <ul class="card-features">
-            <li>Up to 4 hours</li>
-            <li>100+ edited photos</li>
-            <li>Private online gallery</li>
-            <li>USB delivery option</li>
-            <li>7-day delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">Commercial Shoot</h3>
-            <span class="badge badge-enterprise">Enterprise</span>
-          </div>
-          <div class="card-price" data-usd="1500" data-idr="24000000">
-            <span class="price-amount">$1,500</span>
-            <span class="price-unit">/ day</span>
-          </div>
-          <ul class="card-features">
-            <li>Full-day shoot</li>
-            <li>Studio or on-location</li>
-            <li>Prop &amp; styling support</li>
-            <li>Commercial license</li>
-            <li>14-day delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </article>
-
+      <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-sm font-semibold text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg>
+        Cepat &amp; Ringan
       </div>
-    </section>
-
-    <!-- ─── Hourly Rates Table ─── -->
-    <section class="service-section" aria-labelledby="hourly-heading">
-      <h2 class="section-title" id="hourly-heading">
-        <span class="section-icon">⏱</span> Hourly Rates
-      </h2>
-      <div class="table-wrapper">
-        <table class="rate-table" aria-describedby="hourly-heading">
-          <thead>
-            <tr>
-              <th scope="col">Service</th>
-              <th scope="col">Junior</th>
-              <th scope="col">Mid</th>
-              <th scope="col">Senior</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>UI/UX Design</td>
-              <td class="price-cell" data-usd="35" data-idr="560000">$35/hr</td>
-              <td class="price-cell" data-usd="65" data-idr="1040000">$65/hr</td>
-              <td class="price-cell" data-usd="100" data-idr="1600000">$100/hr</td>
-            </tr>
-            <tr>
-              <td>Front-End Dev</td>
-              <td class="price-cell" data-usd="40" data-idr="640000">$40/hr</td>
-              <td class="price-cell" data-usd="75" data-idr="1200000">$75/hr</td>
-              <td class="price-cell" data-usd="120" data-idr="1920000">$120/hr</td>
-            </tr>
-            <tr>
-              <td>Back-End Dev</td>
-              <td class="price-cell" data-usd="45" data-idr="720000">$45/hr</td>
-              <td class="price-cell" data-usd="80" data-idr="1280000">$80/hr</td>
-              <td class="price-cell" data-usd="130" data-idr="2080000">$130/hr</td>
-            </tr>
-            <tr>
-              <td>Copywriting</td>
-              <td class="price-cell" data-usd="25" data-idr="400000">$25/hr</td>
-              <td class="price-cell" data-usd="50" data-idr="800000">$50/hr</td>
-              <td class="price-cell" data-usd="80" data-idr="1280000">$80/hr</td>
-            </tr>
-            <tr>
-              <td>Video Editing</td>
-              <td class="price-cell" data-usd="30" data-idr="480000">$30/hr</td>
-              <td class="price-cell" data-usd="55" data-idr="880000">$55/hr</td>
-              <td class="price-cell" data-usd="90" data-idr="1440000">$90/hr</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-sm font-semibold text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+        Focus ke Conversion
       </div>
-    </section>
-
-    <!-- ─── Add-ons ─── -->
-    <section class="service-section" aria-labelledby="addons-heading">
-      <h2 class="section-title" id="addons-heading">
-        <span class="section-icon">➕</span> Add-ons &amp; Extras
-      </h2>
-      <div class="addons-grid">
-        <div class="addon-item">
-          <span class="addon-name">Rush Delivery (48 hrs)</span>
-          <span class="addon-price" data-usd="50%" data-idr="50%">+50% of base price</span>
-        </div>
-        <div class="addon-item">
-          <span class="addon-name">Source Files</span>
-          <span class="addon-price price-cell" data-usd="100" data-idr="1600000">$100</span>
-        </div>
-        <div class="addon-item">
-          <span class="addon-name">Extra Revision Round</span>
-          <span class="addon-price price-cell" data-usd="50" data-idr="800000">$50</span>
-        </div>
-        <div class="addon-item">
-          <span class="addon-name">Social Media Adaptation</span>
-          <span class="addon-price price-cell" data-usd="150" data-idr="2400000">$150</span>
-        </div>
-        <div class="addon-item">
-          <span class="addon-name">3-Month Maintenance</span>
-          <span class="addon-price price-cell" data-usd="300" data-idr="4800000">$300</span>
-        </div>
-        <div class="addon-item">
-          <span class="addon-name">Extended Commercial License</span>
-          <span class="addon-price price-cell" data-usd="500" data-idr="8000000">$500</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── FAQ ─── -->
-    <section class="service-section faq-section" aria-labelledby="faq-heading">
-      <h2 class="section-title" id="faq-heading">
-        <span class="section-icon">❓</span> Frequently Asked Questions
-      </h2>
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary class="faq-question">How do I get started?</summary>
-          <p class="faq-answer">Fill in the contact form below or send us an email. We'll schedule a free 30-minute discovery call to understand your needs and recommend the best package.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question">What payment methods do you accept?</summary>
-          <p class="faq-answer">We accept bank transfer, credit/debit cards, PayPal, and for Indonesian clients, GoPay and OVO. A 50% deposit is required before work begins.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question">Do prices include revisions?</summary>
-          <p class="faq-answer">Yes! Each package includes a set number of revision rounds. Additional rounds can be purchased as an add-on.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question">Can I request a custom package?</summary>
-          <p class="faq-answer">Absolutely. Contact us with your specific requirements and we'll create a tailored quote for you.</p>
-        </details>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== CONTACT ===== -->
-  <section class="contact-section" id="contact" aria-labelledby="contact-heading">
-    <div class="container">
-      <h2 class="section-title centered" id="contact-heading">Let's Work Together</h2>
-      <p class="contact-sub">Tell us about your project and we'll get back to you within 24 hours.</p>
-      <form class="contact-form" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name *</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="service">Service Interested In</label>
-            <select id="service" name="service">
-              <option value="">— Select a service —</option>
-              <option value="logo">Logo Design</option>
-              <option value="brand">Brand Identity</option>
-              <option value="brand-suite">Full Brand Suite</option>
-              <option value="landing">Landing Page</option>
-              <option value="website">Company Website</option>
-              <option value="ecommerce">E-Commerce Store</option>
-              <option value="photo-portrait">Portrait Photography</option>
-              <option value="photo-event">Event Photography</option>
-              <option value="photo-commercial">Commercial Photography</option>
-              <option value="hourly">Hourly Rate</option>
-              <option value="custom">Custom Project</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="budget">Estimated Budget</label>
-            <select id="budget" name="budget">
-              <option value="">— Select a range —</option>
-              <option value="under-500">Under $500</option>
-              <option value="500-2000">$500 – $2,000</option>
-              <option value="2000-5000">$2,000 – $5,000</option>
-              <option value="5000+">$5,000+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Project Details</label>
-          <textarea id="message" name="message" rows="4" placeholder="Tell us about your project, timeline, and any specific requirements…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg">Send Inquiry</button>
-      </form>
-      <div class="form-success hidden" id="formSuccess" role="alert" aria-live="polite">
-        ✅ Thank you! We'll be in touch within 24 hours.
+      <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-sm font-semibold text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" /></svg>
+        Support &amp; Konsultasi Gratis
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-brand">✦ Creative Studio</p>
-      <p class="footer-note">© <span id="footerYear"></span> Creative Studio. All rights reserved.</p>
-      <p class="footer-disclaimer">All prices are in USD unless otherwise noted. Prices are subject to change.</p>
+  <div class="section-line max-w-7xl mx-auto"></div>
+
+  <!-- ═══════════════════════════════════════════
+       CTA / CONTACT
+  ════════════════════════════════════════════ -->
+  <footer class="max-w-7xl mx-auto px-4 py-14 pb-10">
+    <div class="bg-gradient-to-br from-brand-red/10 via-brand-card to-brand-yellow/5 border border-brand-border rounded-3xl p-8 md:p-12">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+
+        <!-- Left: CTA text -->
+        <div class="md:col-span-2">
+          <h2 class="font-bebas text-4xl md:text-5xl text-white mb-3 leading-tight">
+            SIAP MULAI? <span class="text-brand-red">KONSULTASI GRATIS</span><br/>
+            SEKARANG JUGA.
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed max-w-xl">
+            Jangan tunda lagi — setiap hari tanpa website profesional = potensi pelanggan yang hilang.
+            Tim kami siap bantu dari konsultasi hingga website live.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a href="https://wa.me/6282210142288" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              Chat via WhatsApp
+            </a>
+            <a href="mailto:gadingthebeatboxer@gmail.com"
+               class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm border border-white/20">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+              Send Email
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: contact info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-400" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Hubungi Kami</p>
+              <p class="text-white font-bold">0822 1014 2288</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253M3 12c0 .778.099 1.533.284 2.253" /></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Portfolio</p>
+              <p class="text-white font-bold">www.bpfilmstudio.com</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-red/10 border border-brand-red/20 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-red" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Email</p>
+              <p class="text-white font-bold">gadingthebeatboxer@gmail.com</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-8 pt-6 border-t border-brand-border flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+      <p>© 2025–2026 BP Film Studio. All rights reserved.</p>
+      <p class="flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-brand-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd"/></svg>
+        Harga sewaktu-waktu dapat berubah. Hubungi kami untuk penawaran terbaik.
+      </p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
